@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import { Appbar, BottomNavigation, Text } from 'react-native-paper';
+import { BottomNavigation, Text } from 'react-native-paper';
 import HomeView from '../../views/Home';
-import ViewTestOne from '../../views/ViewTestOne';
-import AppBarNanodev from './appbar';
 
 const style = StyleSheet.create({
   bottomNav:{

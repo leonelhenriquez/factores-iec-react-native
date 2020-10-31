@@ -2,7 +2,6 @@
  * Autor: Leonel Henriquez
  */
 import * as React from 'react';
-import { DrawerActions } from '@react-navigation/native';
 import {StyleSheet} from 'react-native'
 import { Appbar } from "react-native-paper"
 
@@ -21,7 +20,6 @@ export default class AppBarNanodev extends React.Component {
     super(props);
     this.state = {currentHeight: 0};
   }
-  
   
   render(){
     return(
