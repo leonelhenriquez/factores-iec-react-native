@@ -44,14 +44,10 @@ export default class BottomNavigationNanodev extends React.Component {
     this.setState({ index: index });
   };
 
-  renderScene = ({ route, jumpTo }) => {
-    switch (route.key) {
-      case "home":
-        return <HomeView />;
-      case "help":
-        return <HelpView />;
-    }
-  };
+  renderScene = BottomNavigation.SceneMap({
+    home: HomeView,
+    help: HelpView,
+  });
 
   render() {
     return (
