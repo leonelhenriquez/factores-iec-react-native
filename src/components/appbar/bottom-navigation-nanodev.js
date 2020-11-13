@@ -1,10 +1,12 @@
-import * as React from 'react';
-import { StyleSheet } from 'react-native';
-import { BottomNavigation, Text } from 'react-native-paper';
-import HomeView from '../../views/Home';
+import * as React from "react";
+import { StyleSheet } from "react-native";
+import { BottomNavigation } from "react-native-paper";
+import HomeView from "../../views/Home";
+import HelpView from "../../views/Help";
+import AppTheme from "../../theme/AppTheme";
 
 const style = StyleSheet.create({
-  bottomNav:{
+  bottomNav: {
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -12,50 +14,56 @@ const style = StyleSheet.create({
     },
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
-  }
+  },
+  btnNavBar: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: -2,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 2,
+  },
+  nav: { backgroundColor: AppTheme.theme.colors.backgroundColor },
 });
 
-
-const HelpView = () => {
-  return(  
-    <Text>Help view</Text>
-  );
-};
-
-
-
-export default class BottomNavigationNanodev extends React.Component{
-
-  constructor(props){
+export default class BottomNavigationNanodev extends React.Component {
+  constructor(props) {
     super(props);
   }
 
   state = {
     index: 0,
     routes: [
-      {key: 'home'  , title: 'Inicio'  , icon: 'home'   , color: '#3F51B5' },
-      {key: 'help'  , title: 'Help'    , icon: 'help'   , color: '#3F51B5' },
+      { key: "home", title: "Inicio", icon: "home" },
+      { key: "help", title: "Help", icon: "information" },
     ],
   };
 
-  handleIndexChange = index => this.setState({index});
+  handleIndexChange = (index) => {
+    this.setState({ index: index });
+  };
 
-  renderScene = BottomNavigation.SceneMap({
-    home: HomeView,
-    help: HelpView,
-  });
+  renderScene = ({ route, jumpTo }) => {
+    switch (route.key) {
+      case "home":
+        return <HomeView />;
+      case "help":
+        return <HelpView />;
+    }
+  };
 
   render() {
     return (
-        <BottomNavigation 
-          style={style.bottomNav}
-          navigationState={this.state}
-          onIndexChange={this.handleIndexChange}
-          renderScene={this.renderScene}
-          shifting={true}
+      <BottomNavigation
+        navigationState={this.state}
+        onIndexChange={this.handleIndexChange}
+        renderScene={this.renderScene}
+        shifting={false}
+        sceneAnimationEnabled={true}
+        keyboardHidesNavigationBar={true}
+        barStyle={style.btnNavBar}
       />
     );
   }
 }
-
-
