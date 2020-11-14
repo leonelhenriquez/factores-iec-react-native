@@ -14,14 +14,14 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   txtResultado: {
-    height: 36,
-    lineHeight: 42,
     marginBottom: 24,
     marginTop: 24,
     fontWeight: "normal",
     fontFamily: "Poppins-Bold",
     fontSize: 18,
     backgroundColor: "#0ad8c5",
+    paddingTop: 8,
+    paddingBottom: 8,
     paddingLeft: 16,
     paddingRight: 16,
     borderRadius: 36,
@@ -65,6 +65,19 @@ const calcFact = (factor, tasa, n) => {
       resultado = 1 / i - n / (Math.pow(1.0 + i, n) - 1);
       break;
   }
+
+  if (Number.isFinite(resultado)) {
+    resultado = "∞";
+    console.log("es infinito");
+  } else if (Number.isNaN(resultado)) {
+    resultado = "Error";
+  } else {
+    resultado
+      .toString()
+      .toFixed(5)
+      .replace(/0{5,5}$/, "");
+  }
+
   return resultado;
 };
 
@@ -103,11 +116,18 @@ export default class HomeView extends React.Component {
       periodo: "",
       tasa: "",
       resultado: "Resultado",
+      enabledButtons: true,
     };
   }
-  updatePeriodos = (nperiodos) => this.setState({ periodo: nperiodos });
+  updatePeriodos = (nperiodos) => {
+    this.setState({ periodo: nperiodos });
+    this.setEnabledButtons();
+  };
 
-  updateTasa = (tasai) => this.setState({ tasa: tasai });
+  updateTasa = (tasai) => {
+    this.setState({ tasa: tasai });
+    this.setEnabledButtons();
+  };
 
   updateRessultado = (res) => this.setState({ resultado: res });
 
@@ -130,10 +150,17 @@ export default class HomeView extends React.Component {
           this.getPeriodo() +
           " )  =  " +
           calcFact(factor, this.getTasa(), this.getPeriodo())
-            .toFixed(5)
-            .replace(/0{5,5}$/, "")
       );
     }
+  };
+
+  setEnabledButtons = () => {
+    setTimeout(() => {
+      this.setState({
+        enabledButtons:
+          this.getTasa().length == 0 || this.getPeriodo().length == 0,
+      });
+    }, 1);
   };
 
   render() {
@@ -142,9 +169,11 @@ export default class HomeView extends React.Component {
     const getItem = ({ item }) => {
       return (
         <Button
+          theme={AppTheme.themeButton}
           style={{ ...styles.btn, backgroundColor: getColor(item) }}
           mode="contained"
           onPress={() => this.calcular(item)}
+          disabled={this.state.enabledButtons}
         >
           ({item}, i, n)
         </Button>
@@ -162,6 +191,7 @@ export default class HomeView extends React.Component {
             label="Numero de periodos (N)"
             value={String(this.state.periodo)}
             onChangeText={(periodo) => this.updatePeriodos(periodo)}
+            maxLength={20}
           />
 
           <TextInput
@@ -172,6 +202,7 @@ export default class HomeView extends React.Component {
             label="Tasa de interes (%)"
             value={String(this.state.tasa)}
             onChangeText={(tasa) => this.updateTasa(tasa)}
+            maxLength={20}
           />
 
           <Text style={styles.txtResultado}>{this.state.resultado}</Text>
@@ -181,7 +212,8 @@ export default class HomeView extends React.Component {
 
     return (
       <FlatList
-        ListHeaderComponent={getHeader}
+        nestedScrollEnabled={false}
+        ListHeaderComponent={getHeader()}
         contentContainerStyle={styles.gridContainer}
         data={opcionesFactores}
         numColumns={2}

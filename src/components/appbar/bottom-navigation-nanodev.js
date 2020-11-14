@@ -35,8 +35,8 @@ export default class BottomNavigationNanodev extends React.Component {
   state = {
     index: 0,
     routes: [
-      { key: "home", title: "Inicio"      , icon: "home" },
-      { key: "info", title: "Información" , icon: "information" },
+      { key: "home", title: "Inicio", icon: "home" },
+      { key: "info", title: "Información", icon: "information" },
     ],
   };
 

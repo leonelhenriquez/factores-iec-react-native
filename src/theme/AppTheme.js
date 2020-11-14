@@ -29,7 +29,7 @@ const AppTheme = {
   theme: {
     ...DefaultTheme,
     dark: true,
-    roundness: 50,
+    roundness: 5,
     colors: {
       ...DefaultTheme.colors,
       primary: "#3F51B5",
