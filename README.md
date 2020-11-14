@@ -9,7 +9,7 @@ Factores IEC React Native
 
 ## Descargar
 
-- [Android - Descargar Apk](https://github.com/leonelhenriquez/factores-iec-react-native/releases/download/v1.0/Descargar.Android.APK.apk)
+- [Android - Descargar Apk](https://github.com/leonelhenriquez/factores-iec-react-native/releases/download/v1.0/FactoresIEC_Android.apk)
 
 ## Licencia
 
