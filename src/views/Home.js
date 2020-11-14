@@ -66,19 +66,6 @@ const calcFact = (factor, tasa, n) => {
       resultado = 1 / i - n / (Math.pow(1.0 + i, n) - 1);
       break;
   }
-
-  if (Number.isFinite(resultado)) {
-    resultado = "∞";
-    console.log("es infinito");
-  } else if (Number.isNaN(resultado)) {
-    resultado = "Error";
-  } else {
-    resultado
-      .toString()
-      .toFixed(5)
-      .replace(/0{5,5}$/, "");
-  }
-
   return resultado;
 };
 
@@ -142,6 +129,16 @@ export default class HomeView extends React.Component {
 
   calcular = (factor) => {
     if (this.getTasa().length > 0 && this.getPeriodo().length > 0) {
+      let factCalc = calcFact(factor, this.getTasa(), this.getPeriodo());
+
+      if (Number.isNaN(factCalc)) {
+        factCalc = "Error";
+      } else if (!Number.isFinite(factCalc)) {
+        factCalc = "∞";
+      } else {
+        factCalc = Number.parseFloat(factCalc).toFixed(5);
+      }
+
       this.updateRessultado(
         "( " +
           factor +
@@ -150,7 +147,7 @@ export default class HomeView extends React.Component {
           "% , " +
           this.getPeriodo() +
           " )  =  " +
-          calcFact(factor, this.getTasa(), this.getPeriodo())
+          factCalc
       );
     }
   };
@@ -191,7 +188,7 @@ export default class HomeView extends React.Component {
             label="Numero de periodos (N)"
             value={String(this.state.periodo)}
             onChangeText={(periodo) => this.updatePeriodos(periodo)}
-            maxLength={20}
+            maxLength={10}
           />
 
           <TextInput
@@ -202,7 +199,7 @@ export default class HomeView extends React.Component {
             label="Tasa de interes (%)"
             value={String(this.state.tasa)}
             onChangeText={(tasa) => this.updateTasa(tasa)}
-            maxLength={20}
+            maxLength={10}
           />
 
           <Text style={styles.txtResultado}>{this.state.resultado}</Text>
