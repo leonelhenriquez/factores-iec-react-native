@@ -34,7 +34,7 @@ const mmlOptions = {
   jax: ["input/MathML"],
 };
 
-export default class HelpView extends React.Component {
+export default class InformationView extends React.Component {
   constructor(props) {
     super(props);
   }

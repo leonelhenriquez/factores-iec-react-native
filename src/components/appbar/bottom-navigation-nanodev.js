@@ -2,8 +2,8 @@ import * as React from "react";
 import { StyleSheet } from "react-native";
 import { BottomNavigation } from "react-native-paper";
 import HomeView from "../../views/Home";
-import HelpView from "../../views/Help";
 import AppTheme from "../../theme/AppTheme";
+import InformationView from "../../views/Info";
 
 const style = StyleSheet.create({
   bottomNav: {
@@ -35,8 +35,8 @@ export default class BottomNavigationNanodev extends React.Component {
   state = {
     index: 0,
     routes: [
-      { key: "home", title: "Inicio", icon: "home" },
-      { key: "help", title: "Help", icon: "information" },
+      { key: "home", title: "Inicio"      , icon: "home" },
+      { key: "info", title: "Información" , icon: "information" },
     ],
   };
 
@@ -46,7 +46,7 @@ export default class BottomNavigationNanodev extends React.Component {
 
   renderScene = BottomNavigation.SceneMap({
     home: HomeView,
-    help: HelpView,
+    info: InformationView,
   });
 
   render() {

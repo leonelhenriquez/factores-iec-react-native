@@ -1,6 +1,5 @@
 import * as React from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
+import { StyleSheet, View, FlatList } from "react-native";
 import AppTheme from "../theme/AppTheme";
 import { Text, TextInput, Button } from "react-native-paper";
 
