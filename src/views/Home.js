@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     margin: 5,
+    color: "#FFF",
   },
 });
 
@@ -169,7 +170,6 @@ export default class HomeView extends React.Component {
     const getItem = ({ item }) => {
       return (
         <Button
-          theme={AppTheme.themeButton}
           style={{ ...styles.btn, backgroundColor: getColor(item) }}
           mode="contained"
           onPress={() => this.calcular(item)}
@@ -212,7 +212,6 @@ export default class HomeView extends React.Component {
 
     return (
       <FlatList
-        nestedScrollEnabled={false}
         ListHeaderComponent={getHeader()}
         contentContainerStyle={styles.gridContainer}
         data={opcionesFactores}

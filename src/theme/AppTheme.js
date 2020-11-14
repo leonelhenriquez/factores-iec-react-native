@@ -29,17 +29,17 @@ const AppTheme = {
   theme: {
     ...DefaultTheme,
     dark: true,
-    roundness: 5,
+    roundness: 50,
     colors: {
       ...DefaultTheme.colors,
       primary: "#3F51B5",
       accent: "#3F51B5",
-      background: "#34495e",
+      background: "#34495E",
       text: "#FFFFFF",
     },
     fonts: configureFonts(fontConfig),
     animation: {
-      scale: 1,
+      scale: 0.5,
     },
   },
   themeInput: {
@@ -57,7 +57,7 @@ const AppTheme = {
     },
     fonts: configureFonts(fontConfig),
     animation: {
-      scale: 1,
+      scale: 0.5,
     },
   },
 
@@ -68,15 +68,15 @@ const AppTheme = {
     mode: "exact",
     colors: {
       ...DefaultTheme.colors,
-      primary: "#ffffff",
-      accent: "#FFF",
-      background: "#33475b",
-      text: "#FFF",
-      placeholder: "#FFF",
+      primary: "#FFFFFF",
+      accent: "#FFFFFF",
+      background: "#33475B",
+      text: "#FFFFFF",
+      placeholder: "#FFFFFF",
     },
     fonts: configureFonts(fontConfig),
     animation: {
-      scale: 1,
+      scale: 0.5,
     },
   },
   statusBar: {
