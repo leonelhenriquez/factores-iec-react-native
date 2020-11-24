@@ -1,37 +1,26 @@
-## Welcome to GitHub Pages
+# Factores IEC
 
-You can use the [editor on GitHub](https://github.com/leonelhenriquez/factores-iec-react-native/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Factores IEC React Native
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<div style="display:inline">
+  <img src="https://github.com/leonelhenriquez/factores-iec-react-native/blob/0057b211580f4abd2e15e074e5d1c069d7a101b2/appscreenshot_1.png" alt="" height="400px"/>
+  <img src="https://github.com/leonelhenriquez/factores-iec-react-native/blob/0057b211580f4abd2e15e074e5d1c069d7a101b2/appscreenshot_2.png" alt="" height="400px" />
+</div>
 
-### Markdown
+## Descargar
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- [Android - Descargar Apk](https://github.com/leonelhenriquez/factores-iec-react-native/releases/download/v1.0.1/FactoresIEC_Android-universal.apk)
 
-```markdown
-Syntax highlighted code block
+- [Android - Descargar Apk - arm64-v8a](https://github.com/leonelhenriquez/factores-iec-react-native/releases/download/v1.0.1/FactoresIEC_Android-arm64-v8a.apk)
 
-# Header 1
-## Header 2
-### Header 3
+- [Android - Descargar Apk - armeabi-v7a](https://github.com/leonelhenriquez/factores-iec-react-native/releases/download/v1.0.1/FactoresIEC_Android-armeabi-v7a.apk)
 
-- Bulleted
-- List
+- [Android - Descargar Apk - x86_64 ](https://github.com/leonelhenriquez/factores-iec-react-native/releases/download/v1.0.1/FactoresIEC_Android-x86_64.apk)
 
-1. Numbered
-2. List
+- [Android - Descargar Apk - x86](https://github.com/leonelhenriquez/factores-iec-react-native/releases/download/v1.0.1/FactoresIEC_Android-x86.apk)
 
-**Bold** and _Italic_ and `Code` text
+## Licencia
 
-[Link](url) and ![Image](src)
-```
+[GNU General Public License v3.0](LICENSE)
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/leonelhenriquez/factores-iec-react-native/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
