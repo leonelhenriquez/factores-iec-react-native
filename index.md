@@ -3,8 +3,8 @@
 Factores IEC React Native
 
 <div style="display:inline">
-  <img src="https://github.com/leonelhenriquez/factores-iec-react-native/blob/0057b211580f4abd2e15e074e5d1c069d7a101b2/appscreenshot_1.png" alt="" height="400px"/>
-  <img src="https://github.com/leonelhenriquez/factores-iec-react-native/blob/0057b211580f4abd2e15e074e5d1c069d7a101b2/appscreenshot_2.png" alt="" height="400px" />
+  <img src="appscreenshot_1.png" alt="" height="400px"/>
+  <img src="appscreenshot_2.png" alt="" height="400px" />
 </div>
 
 ## Descargar
