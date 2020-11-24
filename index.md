@@ -3,8 +3,8 @@
 Factores IEC React Native
 
 <div style="display:inline">
-  <img src="appscreenshot_1.png" alt="" height="400px"/>
-  <img src="appscreenshot_2.png" alt="" height="400px" />
+  <img src="appscreenshot_1.png" alt="" height="600px"/>
+  <img src="appscreenshot_2.png" alt="" height="600px" />
 </div>
 
 ## Descargar
