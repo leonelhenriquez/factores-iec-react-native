@@ -21,6 +21,6 @@ Factores IEC React Native
 
 ## Licencia
 
-[GNU General Public License v3.0](LICENSE)
+[GNU General Public License v3.0](https://github.com/leonelhenriquez/factores-iec-react-native/blob/main/LICENSE)
 
 
