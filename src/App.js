@@ -2,8 +2,8 @@ import * as React from "react";
 import { View, StyleSheet, StatusBar } from "react-native";
 import AppTheme from "./theme/AppTheme";
 import { NavigationContainer } from "@react-navigation/native";
-import BottomNavigationNanodev from "./components/appbar/bottom-navigation-nanodev";
-import AppBarNanodev from "./components/appbar/appbar";
+import BottomNavigation from "./components/appbar/BottomNavigation";
+import AppBar from "./components/appbar/AppBar";
 
 const styles = StyleSheet.create({
   mainView: {
@@ -25,9 +25,9 @@ function App() {
         hidden={AppTheme.statusBar.hidden}
         translucent={AppTheme.statusBar.translucent}
       />
-      <AppBarNanodev />
+      <AppBar />
       <NavigationContainer>
-        <BottomNavigationNanodev />
+        <BottomNavigation />
       </NavigationContainer>
     </View>
   );

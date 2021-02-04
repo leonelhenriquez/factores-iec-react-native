@@ -68,11 +68,28 @@ const AppTheme = {
     mode: "exact",
     colors: {
       ...DefaultTheme.colors,
-      primary: "#FFFFFF",
-      accent: "#FFFFFF",
+      primary: "#3F51B5",
+      accent: "#3F51B5",
       background: "#33475B",
-      text: "#FFFFFF",
+      text: "#3F51B5",
       placeholder: "#FFFFFF",
+    },
+    fonts: configureFonts(fontConfig),
+    animation: {
+      scale: 0.5,
+    },
+  },
+
+  themeSnackbar: {
+    ...DefaultTheme,
+    dark: true,
+    roundness: 4,
+    mode: "exact",
+    colors: {
+      ...DefaultTheme.colors,
+      accent: "#FFEBEE",
+      surface: "#FFCDD2",
+      onSurface: "#D32F2F",
     },
     fonts: configureFonts(fontConfig),
     animation: {
