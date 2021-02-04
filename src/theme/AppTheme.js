@@ -68,10 +68,10 @@ const AppTheme = {
     mode: "exact",
     colors: {
       ...DefaultTheme.colors,
-      primary: "#3F51B5",
-      accent: "#3F51B5",
+      primary: "#FFFFFF",
+      accent: "#FFFFFF",
       background: "#33475B",
-      text: "#3F51B5",
+      text: "#FFFFFF",
       placeholder: "#FFFFFF",
     },
     fonts: configureFonts(fontConfig),
