@@ -84,8 +84,8 @@ const addHistory = (factor) => {
       factor.getInterestRate(),
       factor.getResult(),
       {
-        day: date.getDay(),
-        month: date.getMonth(),
+        day: date.getDate(),
+        month: date.getMonth() + 1,
         year: date.getFullYear(),
       }
     )
