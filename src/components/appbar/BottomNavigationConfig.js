@@ -1,4 +1,4 @@
 const BottomNavigationConfig = {
-  index: 1,
+  index: 0,
 };
 export default BottomNavigationConfig;
