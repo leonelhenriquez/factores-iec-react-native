@@ -1,8 +1,9 @@
 import * as React from "react";
-import { Linking, ScrollView, StyleSheet, View } from "react-native";
+import { Linking, ScrollView, StyleSheet, View, Image } from "react-native";
 import { Button, List, Text } from "react-native-paper";
 import Settings from "../../Settings";
 import AppTheme from "../../theme/AppTheme";
+import { OptionsFactors } from "../../utils/Factors/OptionsFactors";
 
 const styles = StyleSheet.create({
   viewStyle: {
@@ -32,6 +33,22 @@ const styles = StyleSheet.create({
     marginTop: 24,
     width: "100%",
     alignItems: "center",
+  },
+  listItem: {
+    padding: 0,
+    margin: 0,
+    opacity: 0.8,
+    opacity: 1,
+  },
+  imageRoot: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  image: {
+    width: 220,
+    height: 60,
+    resizeMode: "contain",
   },
 });
 
@@ -66,17 +83,134 @@ export default class InformationView extends React.Component {
             title="Ecuaciones"
             left={(props) => <List.Icon {...props} icon="square-root" />}
           >
-            <List.Item title="First item" />
-            <List.Item title="Second item" />
-            <List.Item title="Second item" />
-            <List.Item title="Second item" />
-            <List.Item title="Second item" />
-            <List.Item title="Second item" />
-            <List.Item title="Second item" />
-            <List.Item title="Second item" />
-            <List.Item title="Second item" />
-            <List.Item title="Second item" />
-            <List.Item title="Second item" />
+            <List.AccordionGroup>
+              <List.Accordion
+                theme={AppTheme.themeButton}
+                style={styles.list}
+                title={OptionsFactors.P_F}
+                id="1"
+              >
+                <List.Item
+                  style={styles.listItem}
+                  title={
+                    <View style={styles.imageRoot}>
+                      <Image
+                        style={styles.image}
+                        source={require("../../assets/equations/f_p.png")}
+                      />
+                    </View>
+                  }
+                />
+              </List.Accordion>
+              <List.Accordion
+                theme={AppTheme.themeButton}
+                style={styles.list}
+                title={OptionsFactors.P_F}
+                id="2"
+              >
+                <List.Item
+                  style={styles.listItem}
+                  title={
+                    <View style={styles.imageRoot}>
+                      <Image
+                        style={styles.image}
+                        source={require("../../assets/equations/p_f.png")}
+                      />
+                    </View>
+                  }
+                />
+              </List.Accordion>
+              <List.Accordion
+                theme={AppTheme.themeButton}
+                style={styles.list}
+                title={OptionsFactors.F_A}
+                id="3"
+              >
+                <List.Item
+                  style={styles.listItem}
+                  title={
+                    <View style={styles.imageRoot}>
+                      <Image
+                        style={styles.image}
+                        source={require("../../assets/equations/f_a.png")}
+                      />
+                    </View>
+                  }
+                />
+              </List.Accordion>
+              <List.Accordion
+                theme={AppTheme.themeButton}
+                style={styles.list}
+                title={OptionsFactors.A_F}
+                id="4"
+              >
+                <List.Item
+                  style={styles.listItem}
+                  title={
+                    <View style={styles.imageRoot}>
+                      <Image
+                        style={styles.image}
+                        source={require("../../assets/equations/a_f.png")}
+                      />
+                    </View>
+                  }
+                />
+              </List.Accordion>
+              <List.Accordion
+                theme={AppTheme.themeButton}
+                style={styles.list}
+                title={OptionsFactors.P_A}
+                id="5"
+              >
+                <List.Item
+                  style={styles.listItem}
+                  title={
+                    <View style={styles.imageRoot}>
+                      <Image
+                        style={styles.image}
+                        source={require("../../assets/equations/p_a.png")}
+                      />
+                    </View>
+                  }
+                />
+              </List.Accordion>
+              <List.Accordion
+                theme={AppTheme.themeButton}
+                style={styles.list}
+                title={OptionsFactors.A_P}
+                id="6"
+              >
+                <List.Item
+                  style={styles.listItem}
+                  title={
+                    <View style={styles.imageRoot}>
+                      <Image
+                        style={styles.image}
+                        source={require("../../assets/equations/a_p.png")}
+                      />
+                    </View>
+                  }
+                />
+              </List.Accordion>
+              <List.Accordion
+                theme={AppTheme.themeButton}
+                style={styles.list}
+                title={OptionsFactors.A_G}
+                id="7"
+              >
+                <List.Item
+                  style={styles.listItem}
+                  title={
+                    <View style={styles.imageRoot}>
+                      <Image
+                        style={styles.image}
+                        source={require("../../assets/equations/a_g.png")}
+                      />
+                    </View>
+                  }
+                />
+              </List.Accordion>
+            </List.AccordionGroup>
           </List.Accordion>
         </View>
       </ScrollView>
