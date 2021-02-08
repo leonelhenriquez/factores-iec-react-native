@@ -7,7 +7,7 @@ import Settings from "../../Settings";
 import Utils from "../../utils/Utils";
 import Factor from "../../utils/Factors/Factor";
 import CalculateFactor from "../../utils/Factors/CalculateFactor";
-import OptionsFactors from "../../utils/Factors/OptionsFactors";
+import { OptionsFactorsArray } from "../../utils/Factors/OptionsFactors";
 import ColorFactor from "../../utils/Factors/ColorFactor";
 import NumberResolver from "../../utils/NumberResolver";
 import CalculatorEvent from "./Event/CalculatorEvent";
@@ -157,7 +157,7 @@ export default class CalculatorView extends React.Component {
       <FlatList
         ListHeaderComponent={getHeader()}
         contentContainerStyle={styles.gridContainer}
-        data={OptionsFactors}
+        data={OptionsFactorsArray}
         numColumns={2}
         keyExtractor={(_item, index) => index.toString()}
         renderItem={getItem}

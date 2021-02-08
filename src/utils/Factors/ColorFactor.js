@@ -1,17 +1,17 @@
-import OptionsFactors from "./OptionsFactors";
+import { OptionsFactors } from "./OptionsFactors";
 
-const ColorsFactor = new Map([
-  [OptionsFactors[0], "#36b4fc"],
-  [OptionsFactors[1], "#35d693"],
-  [OptionsFactors[2], "#8960ff"],
-  [OptionsFactors[3], "#fd6086"],
-  [OptionsFactors[4], "#fea056"],
-  [OptionsFactors[5], "#43bcc8"],
-  [OptionsFactors[6], "#d4304e"],
-]);
+const ColorsFactor = {
+  [OptionsFactors.F_P]: "#36b4fc",
+  [OptionsFactors.P_F]: "#35d693",
+  [OptionsFactors.F_A]: "#8960ff",
+  [OptionsFactors.A_F]: "#fd6086",
+  [OptionsFactors.P_A]: "#fea056",
+  [OptionsFactors.A_P]: "#43bcc8",
+  [OptionsFactors.A_G]: "#d4304e",
+};
 
 export default class ColorFactor {
   static getColor = (key) => {
-    return ColorsFactor.get(key);
+    return ColorsFactor[key];
   };
 }
