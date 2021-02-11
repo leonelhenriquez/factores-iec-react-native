@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Linking, ScrollView, StyleSheet, View, Image } from "react-native";
-import { Button, List, Text } from "react-native-paper";
+import { Linking, ScrollView, StyleSheet, View } from "react-native";
+import { Button, List, Menu, Text } from "react-native-paper";
 import Settings from "../../Settings";
 import AppTheme from "../../theme/AppTheme";
 import { OptionsFactors } from "../../utils/Factors/OptionsFactors";
+import ItemListEquation from "./ItemListEquation";
 
 const styles = StyleSheet.create({
   viewStyle: {
@@ -11,50 +12,41 @@ const styles = StyleSheet.create({
     fontSize: 25,
     padding: 32,
   },
-  button: {
+  buttonLabel: {
     fontSize: 20,
   },
-  latexSyle: {
-    width: "100%",
-    height: 100,
+  button: {
+    marginTop: 50,
+    marginBottom: 50
   },
   titleApp: {
     height: 36,
     lineHeight: 42,
     fontWeight: "normal",
     fontFamily: "Poppins-Bold",
-    fontSize: 20,
+    fontSize: 22,
     marginTop: 24,
     paddingLeft: 16,
     paddingRight: 16,
     borderRadius: 36,
   },
   list: {
-    marginTop: 24,
+    marginTop: 32,
     width: "100%",
     alignItems: "center",
   },
-  listItem: {
-    padding: 0,
-    margin: 0,
-    opacity: 0.8,
-    opacity: 1,
-  },
-  imageRoot: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  image: {
-    width: 220,
-    height: 60,
-    resizeMode: "contain",
+  listTitle: {
+    fontFamily: "Poppins-Bold",
+    fontWeight: "normal",
   },
 });
 
 export default class InformationView extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      expanded: true
+    }
   }
 
   render() {
@@ -63,10 +55,58 @@ export default class InformationView extends React.Component {
         <View style={styles.viewStyle}>
           <Text style={styles.titleApp}>Factores IEC</Text>
           <Text>Version {Settings.version}</Text>
+          <List.Accordion
+            theme={AppTheme.themeButton}
+            style={styles.list}
+            titleStyle={styles.listTitle}
+            title="Ecuaciones"
+            left={(props) => <List.Icon {...props} icon="square-root" />}
+            expanded={this.state.expanded}
+            onPress={()=> this.setState({expanded: !this.state.expanded})}
+            description="Lista de ecuaciones"
+          >
+            <List.AccordionGroup>
+              <ItemListEquation
+                id="1"
+                title={OptionsFactors.F_P}
+                source={require("../../assets/equations/f_p.png")}
+              />
+              <ItemListEquation
+                id="2"
+                title={OptionsFactors.P_F}
+                source={require("../../assets/equations/p_f.png")}
+              />
+              <ItemListEquation
+                id="3"
+                title={OptionsFactors.F_A}
+                source={require("../../assets/equations/f_a.png")}
+              />
+              <ItemListEquation
+                id="4"
+                title={OptionsFactors.A_F}
+                source={require("../../assets/equations/a_f.png")}
+              />
+              <ItemListEquation
+                id="5"
+                title={OptionsFactors.P_A}
+                source={require("../../assets/equations/p_a.png")}
+              />
+              <ItemListEquation
+                id="6"
+                title={OptionsFactors.A_P}
+                source={require("../../assets/equations/a_p.png")}
+              />
+              <ItemListEquation
+                id="7"
+                title={OptionsFactors.A_G}
+                source={require("../../assets/equations/a_g.png")}
+              />
+            </List.AccordionGroup>
+          </List.Accordion>
           <Button
             theme={AppTheme.themeButton}
-            labelStyle={styles.button}
-            style={{ marginTop: 50 }}
+            labelStyle={styles.buttonLabel}
+            style={styles.button}
             icon="github"
             mode="text"
             onPress={() =>
@@ -77,141 +117,6 @@ export default class InformationView extends React.Component {
           >
             Github
           </Button>
-          <List.Accordion
-            theme={AppTheme.themeButton}
-            style={styles.list}
-            title="Ecuaciones"
-            left={(props) => <List.Icon {...props} icon="square-root" />}
-          >
-            <List.AccordionGroup>
-              <List.Accordion
-                theme={AppTheme.themeButton}
-                style={styles.list}
-                title={OptionsFactors.P_F}
-                id="1"
-              >
-                <List.Item
-                  style={styles.listItem}
-                  title={
-                    <View style={styles.imageRoot}>
-                      <Image
-                        style={styles.image}
-                        source={require("../../assets/equations/f_p.png")}
-                      />
-                    </View>
-                  }
-                />
-              </List.Accordion>
-              <List.Accordion
-                theme={AppTheme.themeButton}
-                style={styles.list}
-                title={OptionsFactors.P_F}
-                id="2"
-              >
-                <List.Item
-                  style={styles.listItem}
-                  title={
-                    <View style={styles.imageRoot}>
-                      <Image
-                        style={styles.image}
-                        source={require("../../assets/equations/p_f.png")}
-                      />
-                    </View>
-                  }
-                />
-              </List.Accordion>
-              <List.Accordion
-                theme={AppTheme.themeButton}
-                style={styles.list}
-                title={OptionsFactors.F_A}
-                id="3"
-              >
-                <List.Item
-                  style={styles.listItem}
-                  title={
-                    <View style={styles.imageRoot}>
-                      <Image
-                        style={styles.image}
-                        source={require("../../assets/equations/f_a.png")}
-                      />
-                    </View>
-                  }
-                />
-              </List.Accordion>
-              <List.Accordion
-                theme={AppTheme.themeButton}
-                style={styles.list}
-                title={OptionsFactors.A_F}
-                id="4"
-              >
-                <List.Item
-                  style={styles.listItem}
-                  title={
-                    <View style={styles.imageRoot}>
-                      <Image
-                        style={styles.image}
-                        source={require("../../assets/equations/a_f.png")}
-                      />
-                    </View>
-                  }
-                />
-              </List.Accordion>
-              <List.Accordion
-                theme={AppTheme.themeButton}
-                style={styles.list}
-                title={OptionsFactors.P_A}
-                id="5"
-              >
-                <List.Item
-                  style={styles.listItem}
-                  title={
-                    <View style={styles.imageRoot}>
-                      <Image
-                        style={styles.image}
-                        source={require("../../assets/equations/p_a.png")}
-                      />
-                    </View>
-                  }
-                />
-              </List.Accordion>
-              <List.Accordion
-                theme={AppTheme.themeButton}
-                style={styles.list}
-                title={OptionsFactors.A_P}
-                id="6"
-              >
-                <List.Item
-                  style={styles.listItem}
-                  title={
-                    <View style={styles.imageRoot}>
-                      <Image
-                        style={styles.image}
-                        source={require("../../assets/equations/a_p.png")}
-                      />
-                    </View>
-                  }
-                />
-              </List.Accordion>
-              <List.Accordion
-                theme={AppTheme.themeButton}
-                style={styles.list}
-                title={OptionsFactors.A_G}
-                id="7"
-              >
-                <List.Item
-                  style={styles.listItem}
-                  title={
-                    <View style={styles.imageRoot}>
-                      <Image
-                        style={styles.image}
-                        source={require("../../assets/equations/a_g.png")}
-                      />
-                    </View>
-                  }
-                />
-              </List.Accordion>
-            </List.AccordionGroup>
-          </List.Accordion>
         </View>
       </ScrollView>
     );
