@@ -97,7 +97,7 @@ export default class HistoryView extends React.Component {
           renderItem={({ item, index }) => {
             let dateShow = undefined;
 
-            if (index==0) {
+            if (index == 0) {
               dateShow = item.getDate();
             } else if (
               typeof prevFactor != "undefined" &&
