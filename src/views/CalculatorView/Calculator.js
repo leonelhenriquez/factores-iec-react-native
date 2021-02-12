@@ -33,15 +33,18 @@ export default class CalculatorView extends React.Component {
     });
   }
 
-  updatePeriod = (nperiodos) => {
-    this.setState({ period: nperiodos });
-    this.setEnabledButtons();
-  };
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.period != this.state.period ||
+      prevState.interestRate != this.state.interestRate
+    ) {
+      this.setEnabledButtons();
+    }
+  }
 
-  updateInterestRate = (tasai) => {
-    this.setState({ interestRate: tasai });
-    this.setEnabledButtons();
-  };
+  updatePeriod = (nperiodos) => this.setState({ period: nperiodos });
+
+  updateInterestRate = (tasai) => this.setState({ interestRate: tasai });
 
   updateResult = (factor) => {
     this.setState({
@@ -97,12 +100,10 @@ export default class CalculatorView extends React.Component {
   };
 
   setEnabledButtons = () => {
-    setTimeout(() => {
-      this.setState({
-        enabledButtons:
-          this.getInterestRate().length == 0 || this.getPeriod().length == 0,
-      });
-    }, 1);
+    this.setState({
+      enabledButtons:
+        this.getInterestRate().length == 0 || this.getPeriod().length == 0,
+    });
   };
 
   render() {

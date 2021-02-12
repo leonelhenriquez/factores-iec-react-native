@@ -4,7 +4,6 @@ import { Divider, List } from "react-native-paper";
 import AppTheme from "../../theme/AppTheme";
 
 const styles = StyleSheet.create({
-
   list: {
     marginTop: 4,
     width: "100%",
@@ -13,7 +12,7 @@ const styles = StyleSheet.create({
   listTitle: {
     fontFamily: "Poppins-Bold",
     fontWeight: "normal",
-    color: "#B0BEC5"
+    color: "#B0BEC5",
   },
   listItem: {
     padding: 0,
@@ -47,7 +46,7 @@ export default class ItemListEquation extends React.Component {
           theme={AppTheme.themeButton}
           style={styles.list}
           titleStyle={styles.listTitle}
-          title={"• "+title}
+          title={"• " + title}
           id={id}
         >
           <List.Item

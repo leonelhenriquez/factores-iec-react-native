@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 50,
-    marginBottom: 50
+    marginBottom: 50,
   },
   titleApp: {
     height: 36,
@@ -45,8 +45,8 @@ export default class InformationView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: true
-    }
+      expanded: true,
+    };
   }
 
   render() {
@@ -62,7 +62,7 @@ export default class InformationView extends React.Component {
             title="Ecuaciones"
             left={(props) => <List.Icon {...props} icon="square-root" />}
             expanded={this.state.expanded}
-            onPress={()=> this.setState({expanded: !this.state.expanded})}
+            onPress={() => this.setState({ expanded: !this.state.expanded })}
             description="Lista de ecuaciones"
           >
             <List.AccordionGroup>
