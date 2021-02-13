@@ -127,6 +127,7 @@ def enableUniversalApk = true
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+    ndkVersion "22.0.7026061"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -134,11 +135,12 @@ android {
     }
 
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.factoresiec"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.1.beta-1"
+        versionCode 4
+        versionName "1.1"
     }
     splits {
         abi {
@@ -175,6 +177,9 @@ android {
             shrinkResources true
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),'proguard-rules.pro'
+            ndk {
+                debugSymbolLevel 'SYMBOL_TABLE'
+            }
         }
     }
 
@@ -210,6 +215,8 @@ dependencies {
     implementation project(':react-native-fs')
 
     implementation project(":@react-native-firebase_admob")
+
+    implementation 'com.google.android.gms:play-services-ads:19.7.0'
     
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
