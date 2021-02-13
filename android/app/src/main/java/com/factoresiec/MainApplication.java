@@ -9,13 +9,19 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.rnfs.RNFSPackage;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.List;
 
 import com.horcrux.svg.SvgPackage;
+
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+import io.invertase.firebase.admob.ReactNativeFirebaseAdmobPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -34,7 +40,15 @@ public class MainApplication extends Application implements ReactApplication {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
           // packages.add(new SvgPackage());
+          // packages.add(new RNAdMobPackage());
           return packages;
+          //return Arrays.<ReactPackage>asList(
+          //  new MainReactPackage(),
+            //new ReactNativeFirebaseAppPackage(),
+            //new ReactNativeFirebaseAppPackage(),
+            //new ReactNativeFirebaseAdmobPackage(),
+          //  new RNAdMobPackage()
+          //);
         }
 
         @Override
