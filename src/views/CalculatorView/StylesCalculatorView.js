@@ -24,8 +24,10 @@ const styles = StyleSheet.create({
     borderRadius: 36,
   },
   gridContainer: {
-    paddingLeft: 32,
-    paddingRight: 32,
+    marginLeft: 32,
+    marginRight: 32,
+    paddingLeft: 0,
+    paddingRight: 0,
     paddingBottom: 32,
     paddingTop: 8,
   },

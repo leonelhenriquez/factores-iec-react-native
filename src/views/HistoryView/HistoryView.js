@@ -6,10 +6,14 @@ import { IconButton, Snackbar, Text, Title } from "react-native-paper";
 import HistoryIcon from "../../components/Icons/HistoryIcon";
 import AppTheme from "../../theme/AppTheme";
 import Utils from "../../utils/Utils";
+import AdBanner from "../../admob/AdBanner";
 
 const styles = StyleSheet.create({
   root: {
-    padding: 32,
+    paddingTop: 32,
+    paddingBottom: 32,
+    marginLeft: 32,
+    marginRight: 32,
   },
   title: {
     paddingTop: 10,
@@ -83,12 +87,19 @@ export default class HistoryView extends React.Component {
             </View>
           }
           ListFooterComponent={
-            ListHistory.length == 0 && (
-              <View style={styles.viewVoidMessage}>
-                <HistoryIcon size={32} color="#B0BEC5" style={{ margin: 32 }} />
-                <Text style={styles.voidtText}>No hay historial</Text>
-              </View>
-            )
+            <>
+              {ListHistory.length == 0 && (
+                <View style={styles.viewVoidMessage}>
+                  <HistoryIcon
+                    size={32}
+                    color="#B0BEC5"
+                    style={{ margin: 32 }}
+                  />
+                  <Text style={styles.voidtText}>No hay historial</Text>
+                </View>
+              )}
+              <AdBanner />
+            </>
           }
           contentContainerStyle={styles.root}
           data={ListHistory}

@@ -11,6 +11,7 @@ import { OptionsFactorsArray } from "../../utils/Factors/OptionsFactors";
 import ColorFactor from "../../utils/Factors/ColorFactor";
 import NumberResolver from "../../utils/NumberResolver";
 import CalculatorEvent from "./Event/CalculatorEvent";
+import AdBanner from "../../admob/AdBanner";
 
 export default class CalculatorView extends React.Component {
   constructor(props) {
@@ -154,15 +155,20 @@ export default class CalculatorView extends React.Component {
       );
     };
 
+    const getFooter = () => <AdBanner />;
+
     return (
-      <FlatList
-        ListHeaderComponent={getHeader()}
-        contentContainerStyle={styles.gridContainer}
-        data={OptionsFactorsArray}
-        numColumns={2}
-        keyExtractor={(_item, index) => index.toString()}
-        renderItem={getItem}
-      />
+      <>
+        <FlatList
+          ListHeaderComponent={getHeader()}
+          ListFooterComponent={getFooter()}
+          contentContainerStyle={styles.gridContainer}
+          data={OptionsFactorsArray}
+          numColumns={2}
+          keyExtractor={(_item, index) => index.toString()}
+          renderItem={getItem}
+        />
+      </>
     );
   }
 }

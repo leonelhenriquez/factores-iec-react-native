@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Linking, ScrollView, StyleSheet, View } from "react-native";
 import { Button, List, Menu, Text } from "react-native-paper";
+import AdBanner from "../../admob/AdBanner";
 import Settings from "../../Settings";
 import AppTheme from "../../theme/AppTheme";
 import { OptionsFactors } from "../../utils/Factors/OptionsFactors";
@@ -10,7 +11,10 @@ const styles = StyleSheet.create({
   viewStyle: {
     alignItems: "center",
     fontSize: 25,
-    padding: 32,
+    paddingTop: 32,
+    paddingBottom: 32,
+    marginLeft: 32,
+    marginRight: 32,
   },
   buttonLabel: {
     fontSize: 20,
@@ -117,6 +121,7 @@ export default class InformationView extends React.Component {
           >
             Github
           </Button>
+          <AdBanner />
         </View>
       </ScrollView>
     );
