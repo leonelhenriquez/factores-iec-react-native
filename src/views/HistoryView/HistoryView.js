@@ -57,85 +57,91 @@ export default class HistoryView extends React.Component {
       refreshing: false,
       visibleSnackbar: false,
     };
+    this.prevFactor = undefined;
   }
 
   setRefreshing = (refreshing) => {
-    this.setState({ refreshing: true });
-    setTimeout(() => this.setState({ refreshing: true }), 10);
+    this.setState({ refreshing: refreshing });
+    setTimeout(() => this.setState({ refreshing: false }), 10);
   };
 
   showSnackBar = () => this.setState({ visibleSnackbar: true });
 
   onDismissSnackBar = () => this.setState({ visibleSnackbar: false });
 
+  renderHeader = () => {
+    return (
+      <View style={styles.header}>
+        <Title style={styles.title}>Historial</Title>
+        {ListHistory.length > 0 && (
+          <IconButton
+            icon="delete-sweep-outline"
+            style={styles.iconRemoveAll}
+            onPress={() => this.showSnackBar()}
+          />
+        )}
+      </View>
+    );
+  };
+
+  renderFooter = () => {
+    return (
+      <>
+        {ListHistory.length == 0 && (
+          <View style={styles.viewVoidMessage}>
+            <HistoryIcon size={32} color="#B0BEC5" style={{ margin: 32 }} />
+            <Text style={styles.voidtText}>No hay historial</Text>
+          </View>
+        )}
+        <AdBanner />
+      </>
+    );
+  };
+
+  renderItem = ({ item, index }) => {
+    let dateShow = undefined;
+
+    if (index == 0) {
+      dateShow = item.getDate();
+    } else if (
+      typeof this.prevFactor != "undefined" &&
+      (this.prevFactor.getDate().day != item.getDate().day ||
+        this.prevFactor.getDate().month != item.getDate().month ||
+        this.prevFactor.getDate().year != item.getDate().year)
+    ) {
+      dateShow = item.getDate();
+    }
+
+    this.prevFactor = item;
+
+    if (index == ListHistory.length - 1) {
+      this.prevFactor = undefined;
+    }
+
+    return (
+      <>
+        {typeof dateShow != "undefined" && (
+          <Text style={styles.textDate}>
+            {dateShow.day}/{dateShow.month}/{dateShow.year}
+          </Text>
+        )}
+        <ItemHistory history={item} onRefresh={this.setRefreshing} />
+      </>
+    );
+  };
+
   render() {
-    let prevFactor = undefined;
     return (
       <>
         <FlatList
           refreshing={this.state.refreshing}
-          ListHeaderComponent={
-            <View style={styles.header}>
-              <Title style={styles.title}>Historial</Title>
-              {ListHistory.length > 0 && (
-                <IconButton
-                  icon="delete-sweep-outline"
-                  style={styles.iconRemoveAll}
-                  onPress={() => this.showSnackBar()}
-                />
-              )}
-            </View>
-          }
-          ListFooterComponent={
-            <>
-              {ListHistory.length == 0 && (
-                <View style={styles.viewVoidMessage}>
-                  <HistoryIcon
-                    size={32}
-                    color="#B0BEC5"
-                    style={{ margin: 32 }}
-                  />
-                  <Text style={styles.voidtText}>No hay historial</Text>
-                </View>
-              )}
-              <AdBanner />
-            </>
-          }
+          ListHeaderComponent={this.renderHeader}
+          ListFooterComponent={this.renderFooter}
           contentContainerStyle={styles.root}
           data={ListHistory}
           numColumns={1}
           keyExtractor={(_item, index) => index.toString()}
-          renderItem={({ item, index }) => {
-            let dateShow = undefined;
-
-            if (index == 0) {
-              dateShow = item.getDate();
-            } else if (
-              typeof prevFactor != "undefined" &&
-              (prevFactor.getDate().day != item.getDate().day ||
-                prevFactor.getDate().month != item.getDate().month ||
-                prevFactor.getDate().year != item.getDate().year)
-            ) {
-              dateShow = item.getDate();
-            }
-
-            prevFactor = item;
-
-            if (index == ListHistory.length - 1) {
-              prevFactor = undefined;
-            }
-
-            return (
-              <>
-                {typeof dateShow != "undefined" && (
-                  <Text style={styles.textDate}>
-                    {dateShow.day}/{dateShow.month}/{dateShow.year}
-                  </Text>
-                )}
-                <ItemHistory history={item} onRefresh={this.setRefreshing} />
-              </>
-            );
-          }}
+          renderItem={this.renderItem}
         />
         <Snackbar
           theme={AppTheme.themeSnackbar}
