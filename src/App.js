@@ -4,6 +4,7 @@ import AppTheme from "./theme/AppTheme";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomNavigation from "./components/appbar/BottomNavigation";
 import AppBar from "./components/appbar/AppBar";
+import SplashScreenView from "./views/SplashScreen/SplashScreenView";
 
 const styles = StyleSheet.create({
   mainView: {
@@ -15,7 +16,12 @@ const styles = StyleSheet.create({
   },
 });
 
-function App() {
+const App = () => {
+  const [hideSplashScreen, setHideSplashScreen] = React.useState(false);
+  const time = 1;
+
+  setTimeout(() => setHideSplashScreen(true), time * 1000);
+
   return (
     <View style={styles.mainView}>
       <StatusBar
@@ -25,12 +31,18 @@ function App() {
         hidden={AppTheme.statusBar.hidden}
         translucent={AppTheme.statusBar.translucent}
       />
-      <AppBar />
-      <NavigationContainer>
-        <BottomNavigation />
-      </NavigationContainer>
+      {!hideSplashScreen ? (
+        <SplashScreenView />
+      ) : (
+        <>
+          <AppBar />
+          <NavigationContainer>
+            <BottomNavigation />
+          </NavigationContainer>
+        </>
+      )}
     </View>
   );
-}
+};
 
 export default App;
