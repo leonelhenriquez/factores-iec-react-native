@@ -121,7 +121,7 @@ export default class InformationView extends React.Component {
           >
             Github
           </Button>
-          <AdBanner />
+          <AdBanner style={{ borderRadius: 0 }} />
         </View>
       </ScrollView>
     );
