@@ -107,9 +107,9 @@ export default class CalculatorView extends React.Component {
     });
   };
 
-  render() {
-    const getItem = ({ item }) => {
-      return (
+  getItem = ({ item }) => {
+    return (
+      <>
         <Button
           style={{ ...styles.btn, backgroundColor: ColorFactor.getColor(item) }}
           mode="contained"
@@ -118,55 +118,55 @@ export default class CalculatorView extends React.Component {
         >
           ({item}, i, n)
         </Button>
-      );
-    };
+      </>
+    );
+  };
 
-    const getHeader = () => {
-      return (
-        <View style={styles.viewStyle}>
-          <TextInput
-            theme={AppTheme.themeInput}
-            style={styles.input}
-            keyboardType="numeric"
-            mode="outlined"
-            label="Numero de periodos (N)"
-            value={String(this.state.period)}
-            onChangeText={(periodo) => {
-              this.updatePeriod(periodo);
-            }}
-            maxLength={10}
-          />
+  getHeader = () => {
+    return (
+      <View style={styles.viewStyle}>
+        <TextInput
+          theme={AppTheme.themeInput}
+          style={styles.input}
+          keyboardType="numeric"
+          mode="outlined"
+          label="Numero de periodos (N)"
+          value={String(this.state.period)}
+          onChangeText={(periodo) => {
+            this.updatePeriod(periodo);
+          }}
+          maxLength={10}
+        />
 
-          <TextInput
-            theme={AppTheme.themeInput}
-            style={styles.input}
-            keyboardType="numeric"
-            mode="outlined"
-            label="Tasa de interes (%)"
-            value={String(this.state.interestRate)}
-            onChangeText={(interestRate) =>
-              this.updateInterestRate(interestRate)
-            }
-            maxLength={10}
-          />
+        <TextInput
+          theme={AppTheme.themeInput}
+          style={styles.input}
+          keyboardType="numeric"
+          mode="outlined"
+          label="Tasa de interes (%)"
+          value={String(this.state.interestRate)}
+          onChangeText={(interestRate) => this.updateInterestRate(interestRate)}
+          maxLength={10}
+        />
 
-          <Text style={styles.txtResultado}>{this.state.result}</Text>
-        </View>
-      );
-    };
+        <Text style={styles.txtResultado}>{this.state.result}</Text>
+      </View>
+    );
+  };
 
-    const getFooter = () => <AdBanner />;
+  getFooter = () => <AdBanner />;
 
+  render() {
     return (
       <>
         <FlatList
-          ListHeaderComponent={getHeader()}
-          ListFooterComponent={getFooter()}
+          ListHeaderComponent={this.getHeader}
+          ListFooterComponent={this.getFooter}
           contentContainerStyle={styles.gridContainer}
           data={OptionsFactorsArray}
           numColumns={2}
           keyExtractor={(_item, index) => index.toString()}
-          renderItem={getItem}
+          renderItem={this.getItem}
         />
       </>
     );
