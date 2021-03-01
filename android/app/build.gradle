@@ -78,7 +78,8 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    enableHermes: false,  // clean and rebuild if changing
+    enableHermes: true,  // clean and rebuild if changing
+    entryFile: "index.android.js",
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -109,7 +110,7 @@ def enableProguardInReleaseBuilds = true
  * give correct results when using with locales other than en-US.  Note that
  * this variant is about 6MiB larger per architecture than default.
  */
-def jscFlavor = 'org.webkit:android-jsc:+'
+def jscFlavor = 'org.webkit:android-jsc-intl:+'
 
 /**
  * Whether to enable the Hermes VM.
@@ -139,8 +140,8 @@ android {
         applicationId "com.factoresiec"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 4
-        versionName "1.1"
+        versionCode 8
+        versionName "1.2.2"
     }
     splits {
         abi {
@@ -176,10 +177,18 @@ android {
             signingConfig signingConfigs.release
             shrinkResources true
             minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
             ndk {
-                debugSymbolLevel 'SYMBOL_TABLE'
+                debugSymbolLevel 'FULL'
             }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            version "3.18.1"
         }
     }
 
@@ -210,13 +219,11 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-    implementation project(':react-native-svg')
-
     implementation project(':react-native-fs')
 
     implementation project(":@react-native-firebase_admob")
 
-    implementation 'com.google.android.gms:play-services-ads:19.7.0'
+    //implementation 'com.google.android.gms:play-services-ads:19.7.0'
     
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
