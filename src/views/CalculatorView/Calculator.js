@@ -1,174 +1,179 @@
-import * as React from "react";
-import { View, FlatList } from "react-native";
-import { Text, TextInput, Button } from "react-native-paper";
-import AppTheme from "../../theme/AppTheme";
-import styles from "./StylesCalculatorView";
-import Settings from "../../Settings";
-import Utils from "../../utils/Utils";
-import Factor from "../../utils/Factors/Factor";
-import CalculateFactor from "../../utils/Factors/CalculateFactor";
-import { OptionsFactorsArray } from "../../utils/Factors/OptionsFactors";
-import ColorFactor from "../../utils/Factors/ColorFactor";
-import NumberResolver from "../../utils/NumberResolver";
-import CalculatorEvent from "./Event/CalculatorEvent";
-import AdBanner from "../../admob/AdBanner";
+import * as React from 'react';
+import { View, FlatList } from 'react-native';
+import { Text, TextInput, Button } from 'react-native-paper';
+import AppTheme from '../../theme/AppTheme';
+import styles from './StylesCalculatorView';
+import Utils from '../../utils/Utils';
+import Factor from '../../utils/Factors/Factor';
+import { OptionsFactorsArray } from '../../utils/Factors/OptionsFactors';
+import ColorFactor from '../../utils/Factors/ColorFactor';
+import NumberResolver from '../../utils/NumberResolver';
+import CalculatorEvent from './Event/CalculatorEvent';
+import ListHistory from '../../utils/History/ListHistory';
+import isNumber from '../../utils/isNumber';
 
 export default class CalculatorView extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      period: "",
-      interestRate: "",
-      result: "Resultado",
-      enabledButtons: true,
-    };
-    this.factorPrev = undefined;
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			period: '',
+			interestRate: '',
+			result: 'Resultado',
+			disabledButtons: true,
+			errors: {
+				period: false,
+				interestRate: false,
+			},
+		};
+	}
 
-  componentDidMount() {
-    CalculatorEvent.addShowFactorEvent((factor) => {
-      this.updatePeriod(factor.getPeriod().toString());
-      this.updateInterestRate(factor.getInterestRate().toString());
-      this.updateResult(factor);
-      this.setState({ ...this.state });
-    });
-  }
+	componentDidMount() {
+		CalculatorEvent.addShowFactorEvent(factor => {
+			this.updatePeriod(factor.getPeriod().toString());
+			this.updateInterestRate(factor.getInterestRate().toString());
+			this.updateResult(factor);
+			this.setState({ ...this.state });
+		});
+	}
 
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      prevState.period != this.state.period ||
-      prevState.interestRate != this.state.interestRate
-    ) {
-      this.setEnabledButtons();
-    }
-  }
+	componentDidUpdate(prevProps, prevState) {
+		console.log(this.state);
+		if (
+			prevState.period !== this.state.period ||
+			prevState.interestRate !== this.state.interestRate
+		) {
+			this.setEnabledButtons();
+			this.setErros();
+		}
+	}
 
-  updatePeriod = (nperiodos) => this.setState({ period: nperiodos });
+	shouldComponentUpdate(nextProps, nextState) {
+		return (
+			this.state.period !== nextState.period ||
+			this.state.interestRate !== nextState.interestRate ||
+			this.state.result !== nextState.result ||
+			this.state.disabledButtons !== nextState.disabledButtons ||
+			this.state.errors.period !== nextState.errors.period ||
+			this.state.errors.interestRate !== nextState.errors.interestRate
+		);
+	}
 
-  updateInterestRate = (tasai) => this.setState({ interestRate: tasai });
+	updatePeriod = nperiodos =>
+		this.setState({ period: nperiodos.replace(/[^0-9,.-]/g, '') });
 
-  updateResult = (factor) => {
-    this.setState({
-      result:
-        "( " +
-        factor.getFactor() +
-        " , " +
-        factor.getInterestRate() +
-        "% , " +
-        factor.getPeriod() +
-        " )  =  " +
-        factor.getResult(),
-    });
-  };
+	updateInterestRate = tasai =>
+		this.setState({ interestRate: tasai.replace(/[^0-9,.-]/g, '') });
 
-  getPeriod = () => {
-    return this.state.period;
-  };
+	updateResult = factor => {
+		this.setState({
+			result: `( ${factor.getFactor()} , ${factor.getInterestRate()}% , ${factor.getPeriod()} )  =  ${factor.getResult()}`,
+		});
+	};
 
-  getInterestRate = () => {
-    return this.state.interestRate;
-  };
+	getPeriod = () => this.state.period;
 
-  calcular = (typeFactor) => {
-    if (this.getInterestRate().length > 0 && this.getPeriod().length > 0) {
-      let factorObj = new Factor(
-        typeFactor,
-        NumberResolver(this.getPeriod()),
-        NumberResolver(this.getInterestRate())
-      );
+	getInterestRate = () => this.state.interestRate;
 
-      factorObj.setResult(CalculateFactor(factorObj));
+	calcular = typeFactor => {
+		if (this.getInterestRate().length > 0 && this.getPeriod().length > 0) {
+			let factor = new Factor(
+				typeFactor,
+				NumberResolver(this.getPeriod()),
+				NumberResolver(this.getInterestRate()),
+			);
 
-      if (Number.isNaN(factorObj.getResult())) {
-        factorObj.setResult("Error");
-      } else if (!Number.isFinite(factorObj.getResult())) {
-        factorObj.setResult("∞");
-      } else {
-        factorObj.setResult(
-          Number.parseFloat(factorObj.getResult()).toFixed(
-            Settings.decimal_precision
-          )
-        );
+			if (factor.calculateFactor()) {
+				if (!factor.equals(ListHistory[0])) {
+					Utils.addHistory(factor);
+				}
+			}
 
-        if (!factorObj.equals(this.factorPrev)) {
-          this.factorPrev = Object.assign({}, factorObj);
-          Utils.addHistory(factorObj);
-        }
-      }
+			this.updateResult(factor);
+		}
+	};
 
-      this.updateResult(factorObj);
-    }
-  };
+	setEnabledButtons = () => {
+		this.setState({
+			disabledButtons:
+				this.getInterestRate().length === 0 ||
+				this.getPeriod().length === 0 ||
+				!isNumber(this.getInterestRate()) ||
+				!isNumber(this.getPeriod()),
+		});
+	};
 
-  setEnabledButtons = () => {
-    this.setState({
-      enabledButtons:
-        this.getInterestRate().length == 0 || this.getPeriod().length == 0,
-    });
-  };
+	setErros = () => {
+		this.setState({
+			errors: {
+				period: !isNumber(this.getPeriod()),
+				interestRate: !isNumber(this.getInterestRate()),
+			},
+		});
+	};
 
-  getItem = ({ item }) => {
-    return (
-      <>
-        <Button
-          style={{ ...styles.btn, backgroundColor: ColorFactor.getColor(item) }}
-          mode="contained"
-          onPress={() => this.calcular(item)}
-          disabled={this.state.enabledButtons}
-        >
-          ({item}, i, n)
-        </Button>
-      </>
-    );
-  };
+	getItem = ({ item }) => {
+		return (
+			<>
+				<Button
+					style={{ ...styles.btn, backgroundColor: ColorFactor.getColor(item) }}
+					mode="contained"
+					onPress={() => this.calcular(item)}
+					disabled={this.state.disabledButtons}
+				>
+					({item}, i, n)
+				</Button>
+			</>
+		);
+	};
 
-  getHeader = () => {
-    return (
-      <View style={styles.viewStyle}>
-        <TextInput
-          theme={AppTheme.themeInput}
-          style={styles.input}
-          keyboardType="numeric"
-          mode="outlined"
-          label="Numero de periodos (N)"
-          value={String(this.state.period)}
-          onChangeText={(periodo) => {
-            this.updatePeriod(periodo);
-          }}
-          maxLength={10}
-        />
+	getHeader = () => {
+		return (
+			<View style={styles.viewStyle}>
+				<TextInput
+					label="Numero de periodos (N)"
+					theme={AppTheme.themeInput}
+					style={styles.input}
+					keyboardType="number-pad"
+					autoCorrect={false}
+					mode="outlined"
+					value={String(this.state.period)}
+					onChangeText={periodo => this.updatePeriod(periodo)}
+					maxLength={10}
+					error={this.state.errors.period}
+					right={<TextInput.Icon name="timetable" size={16} />}
+				/>
 
-        <TextInput
-          theme={AppTheme.themeInput}
-          style={styles.input}
-          keyboardType="numeric"
-          mode="outlined"
-          label="Tasa de interes (%)"
-          value={String(this.state.interestRate)}
-          onChangeText={(interestRate) => this.updateInterestRate(interestRate)}
-          maxLength={10}
-        />
+				<TextInput
+					label="Tasa de interes (%)"
+					theme={AppTheme.themeInput}
+					style={styles.input}
+					keyboardType="number-pad"
+					autoCorrect={false}
+					mode="outlined"
+					value={String(this.state.interestRate)}
+					onChangeText={interestRate => this.updateInterestRate(interestRate)}
+					maxLength={10}
+					error={this.state.errors.interestRate}
+					right={<TextInput.Icon name="percent" size={16} />}
+				/>
 
-        <Text style={styles.txtResultado}>{this.state.result}</Text>
-      </View>
-    );
-  };
+				<Text style={styles.txtResultado}>{this.state.result}</Text>
+			</View>
+		);
+	};
 
-  getFooter = () => <AdBanner />;
-
-  render() {
-    return (
-      <>
-        <FlatList
-          ListHeaderComponent={this.getHeader}
-          ListFooterComponent={this.getFooter}
-          contentContainerStyle={styles.gridContainer}
-          data={OptionsFactorsArray}
-          numColumns={2}
-          keyExtractor={(_item, index) => index.toString()}
-          renderItem={this.getItem}
-        />
-      </>
-    );
-  }
+	render() {
+		return (
+			<>
+				<FlatList
+					ListHeaderComponent={this.getHeader}
+					contentContainerStyle={styles.gridContainer}
+					data={OptionsFactorsArray}
+					numColumns={2}
+					keyExtractor={(_item, index) => index.toString()}
+					renderItem={this.getItem}
+				/>
+			</>
+		);
+	}
 }
