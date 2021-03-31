@@ -17,9 +17,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
 
-import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
-import io.invertase.firebase.admob.ReactNativeFirebaseAdmobPackage;
-
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -66,8 +63,8 @@ public class MainApplication extends Application implements ReactApplication {
     if (BuildConfig.DEBUG) {
       try {
         /*
-         We use reflection here to pick up the class that initializes Flipper,
-        since Flipper library is not available in release mode
+          We use reflection here to pick up the class that initializes Flipper,
+          since Flipper library is not available in release mode
         */
         Class<?> aClass = Class.forName("com.factoresiec.ReactNativeFlipper");
         aClass
