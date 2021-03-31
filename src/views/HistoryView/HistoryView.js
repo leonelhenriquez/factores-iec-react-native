@@ -7,48 +7,6 @@ import HistoryIcon from '../../components/Icons/HistoryIcon';
 import AppTheme from '../../theme/AppTheme';
 import Utils from '../../utils/Utils';
 
-const styles = StyleSheet.create({
-	root: {
-		paddingTop: 32,
-		paddingBottom: 32,
-		marginLeft: 32,
-		marginRight: 32,
-	},
-	title: {
-		paddingTop: 10,
-		width: '100%',
-		textAlign: 'center',
-	},
-	voidtText: {
-		color: '#ccd3d6',
-	},
-	viewVoidMessage: {
-		alignItems: 'center',
-		textAlign: 'center',
-	},
-	textDate: {
-		paddingTop: 24,
-		paddingBottom: 8,
-		marginBottom: 16,
-		borderBottomWidth: 2,
-		borderBottomColor: '#FFAB00',
-		fontSize: 18,
-		color: '#FFAB00',
-		fontFamily: 'Poppins-Bold',
-		fontWeight: 'normal',
-	},
-	header: {
-		width: '100%',
-		paddingBottom: 24,
-		position: 'relative',
-	},
-	iconRemoveAll: {
-		position: 'absolute',
-		right: 0,
-		top: 0,
-	},
-});
-
 export default class HistoryView extends React.Component {
 	constructor(props) {
 		super(props);
@@ -86,9 +44,9 @@ export default class HistoryView extends React.Component {
 	renderFooter = () => {
 		return (
 			<>
-				{ListHistory.length == 0 && (
+				{ListHistory.length === 0 && (
 					<View style={styles.viewVoidMessage}>
-						<HistoryIcon size={32} color="#B0BEC5" style={{ margin: 32 }} />
+						<HistoryIcon size={32} color="#B0BEC5" style={styles.iconStyle} />
 						<Text style={styles.voidtText}>No hay historial</Text>
 					</View>
 				)}
@@ -159,3 +117,48 @@ export default class HistoryView extends React.Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	root: {
+		paddingTop: 32,
+		paddingBottom: 32,
+		marginLeft: 32,
+		marginRight: 32,
+	},
+	title: {
+		paddingTop: 10,
+		width: '100%',
+		textAlign: 'center',
+	},
+	voidtText: {
+		color: '#ccd3d6',
+	},
+	viewVoidMessage: {
+		alignItems: 'center',
+		textAlign: 'center',
+	},
+	textDate: {
+		paddingTop: 24,
+		paddingBottom: 8,
+		marginBottom: 16,
+		borderBottomWidth: 2,
+		borderBottomColor: '#FFAB00',
+		fontSize: 18,
+		color: '#FFAB00',
+		fontFamily: 'Poppins-Bold',
+		fontWeight: 'normal',
+	},
+	header: {
+		width: '100%',
+		paddingBottom: 24,
+		position: 'relative',
+	},
+	iconRemoveAll: {
+		position: 'absolute',
+		right: 0,
+		top: 0,
+	},
+	iconStyle: {
+		margin: 32,
+	},
+});

@@ -1,33 +1,9 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { IconButton, List, Text } from 'react-native-paper';
+import { StyleSheet } from 'react-native';
+import { IconButton, List } from 'react-native-paper';
 import BottomNavigationEvent from '../../components/appbar/Event/BottomNavigationEvent';
 import Utils from '../../utils/Utils';
 import CalculatorEvent from '../CalculatorView/Event/CalculatorEvent';
-
-const styles = StyleSheet.create({
-	root: {
-		padding: 12,
-		borderWidth: 2,
-		borderColor: 'rgba(176,190,1975, 0.2)',
-		borderRadius: 5,
-	},
-	item: {
-		color: '#B0BEC5',
-		fontWeight: 'bold',
-		fontSize: 16,
-		borderWidth: 2,
-		borderColor: 'rgba(176,190,1975, 0.2)',
-		borderRadius: 5,
-		marginBottom: 8,
-	},
-	itemTitle: {
-		color: '#B0BEC5',
-
-		fontFamily: 'Poppins-Regular',
-		fontWeight: 'normal',
-	},
-});
 
 const ItemHistory = ({ history, onRefresh }) => {
 	return (
@@ -53,5 +29,25 @@ const ItemHistory = ({ history, onRefresh }) => {
 		/>
 	);
 };
+
+const styles = StyleSheet.create({
+	item: {
+		color: '#B0BEC5',
+		fontWeight: 'bold',
+		fontSize: 16,
+		borderWidth: 1,
+		borderColor: '#495e73',
+		backgroundColor: '#374d62',
+		borderRadius: 6,
+		marginBottom: 10,
+		elevation: 2,
+	},
+	itemTitle: {
+		color: '#B0BEC5',
+
+		fontFamily: 'Poppins-Regular',
+		fontWeight: 'normal',
+	},
+});
 
 export default ItemHistory;
