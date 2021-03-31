@@ -60,3 +60,5 @@ buck-out/
 .vscode/launch.json
 package-lock.json
 yarn.lock
+firebase.json
+coverage/
