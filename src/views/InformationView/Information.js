@@ -52,6 +52,10 @@ export default class InformationView extends React.Component {
 		};
 	}
 
+	shouldComponentUpdate(nextProps, nextState) {
+		return this.state.expanded !== nextState.expanded;
+	}
+
 	render() {
 		return (
 			<ScrollView>
