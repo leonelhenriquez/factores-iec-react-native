@@ -98,6 +98,11 @@ export default class HistoryView extends React.Component {
 					numColumns={1}
 					keyExtractor={(_item, index) => index.toString()}
 					renderItem={this.renderItem}
+					maxToRenderPerBatch={8}
+					updateCellsBatchingPeriod={16}
+					initialNumToRender={8}
+					windowSize={2}
+					removeClippedSubviews={true}
 				/>
 				<Snackbar
 					theme={AppTheme.themeSnackbar}

@@ -16,7 +16,8 @@ export default class MainApp extends React.Component {
 	}
 
 	componentDidMount() {
-		Utils.loadHistory();
+		Utils.loadSettins();
+		setTimeout(Utils.loadHistory, 0);
 	}
 
 	render() {

@@ -8,6 +8,7 @@ import ItemListEquation from './ItemListEquation';
 
 const styles = StyleSheet.create({
 	viewStyle: {
+		flex: 1,
 		alignItems: 'center',
 		fontSize: 25,
 		paddingTop: 32,

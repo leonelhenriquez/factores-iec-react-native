@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { View, StyleSheet, StatusBar } from 'react-native';
-import AppTheme from './theme/AppTheme';
 import { NavigationContainer } from '@react-navigation/native';
-import BottomNavigation from './components/appbar/BottomNavigation';
+import AppTheme from './theme/AppTheme';
+import SettingsView from './views/SettingsView/SettingsView';
 import AppBar from './components/appbar/AppBar';
+import BottomNavigation from './components/appbar/BottomNavigation';
 
 const styles = StyleSheet.create({
 	mainView: {
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-const App = () => {
+function App() {
 	return (
 		<View style={styles.mainView}>
 			<StatusBar
@@ -28,8 +29,9 @@ const App = () => {
 			<NavigationContainer>
 				<BottomNavigation />
 			</NavigationContainer>
+			<SettingsView />
 		</View>
 	);
-};
+}
 
 export default App;

@@ -37,7 +37,6 @@ export default class CalculatorView extends React.Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		console.log(this.state);
 		if (
 			prevState.period !== this.state.period ||
 			prevState.interestRate !== this.state.interestRate

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { BottomNavigation as BottomNavigationPaper } from 'react-native-paper';
 import CalculatorView from '../../views/CalculatorView/Calculator';
 import HistoryView from '../../views/HistoryView/HistoryView';
@@ -11,7 +11,7 @@ export default class BottomNavigation extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			index: 0,
+			index: BottomNavigationConfig.index,
 			routes: [
 				{ key: 'calculator', title: 'Calculadora', icon: 'calculator-variant' },
 				{ key: 'history', title: 'Historial', icon: 'history' },

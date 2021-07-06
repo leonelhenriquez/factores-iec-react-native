@@ -8,6 +8,8 @@ const styles = StyleSheet.create({
 		marginTop: 4,
 		width: '100%',
 		alignItems: 'center',
+		overflow: 'hidden',
+		flex: 0,
 	},
 	listTitle: {
 		fontFamily: 'Poppins-Bold',
@@ -32,34 +34,28 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default class ItemListEquation extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+const ItemListEquation = ({ title, source, id }) => {
+	return (
+		<>
+			<List.Accordion
+				theme={AppTheme.themeButton}
+				style={styles.list}
+				titleStyle={styles.listTitle}
+				title={'• ' + title}
+				id={id}
+			>
+				<List.Item
+					style={styles.listItem}
+					title={
+						<View style={styles.imageRoot}>
+							<Image style={styles.image} source={source} />
+						</View>
+					}
+				/>
+			</List.Accordion>
+			<Divider />
+		</>
+	);
+};
 
-	render() {
-		const { title, source, id } = this.props;
-
-		return (
-			<>
-				<List.Accordion
-					theme={AppTheme.themeButton}
-					style={styles.list}
-					titleStyle={styles.listTitle}
-					title={'• ' + title}
-					id={id}
-				>
-					<List.Item
-						style={styles.listItem}
-						title={
-							<View style={styles.imageRoot}>
-								<Image style={styles.image} source={source} />
-							</View>
-						}
-					/>
-				</List.Accordion>
-				<Divider />
-			</>
-		);
-	}
-}
+export default ItemListEquation;

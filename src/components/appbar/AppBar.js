@@ -4,6 +4,7 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { Appbar as AppbarPaper } from 'react-native-paper';
+import SettingsEvent from '../../views/SettingsView/Event/SettingsEvent';
 
 const styles = StyleSheet.create({
 	appbar: {
@@ -26,10 +27,11 @@ export default class AppBar extends React.Component {
 
 	render() {
 		return (
-			<AppbarPaper style={styles.appbar}>
-				<AppbarPaper.Action icon="cash" />
-				<AppbarPaper.Content title="Factores IEC" style={styles.title} />
-			</AppbarPaper>
+			<Appbar style={styles.appbar}>
+				<Appbar.Action icon="cash" />
+				<Appbar.Content title="Factores IEC" style={styles.title} />
+				<AppbarPaper.Action icon="cog" onPress={SettingsEvent.open} />
+			</Appbar>
 		);
 	}
 }

@@ -61,53 +61,38 @@ const AppTheme = {
 		},
 	},
 
-	themeButton: {
-		...DefaultTheme,
-		dark: true,
-		roundness: 50,
-		colors: {
-			...DefaultTheme.colors,
-			primary: '#FFFFFF',
-			accent: '#FFFFFF',
-			background: '#33475B',
-			text: '#FFFFFF',
-			placeholder: '#FFFFFF',
-		},
-		fonts: configureFonts(fontConfig),
-		animation: {
-			scale: 0.5,
-		},
-	},
-
-	themeSnackbar: {
-		...DefaultTheme,
-		dark: true,
-		roundness: 4,
-		colors: {
-			...DefaultTheme.colors,
-			accent: '#FFEBEE',
-			surface: '#FFCDD2',
-			onSurface: '#D32F2F',
-		},
-		fonts: configureFonts(fontConfig),
-		animation: {
-			scale: 0.5,
-		},
-	},
-	statusBar: {
-		animated: true,
-		backgroundColor: '#3d4da9', // android
-		barStyle: 'light-content', // 'default', 'light-content', 'dark-content'
-		hidden: false,
-		translucent: true, // android
-		/**
-		 * More options
-		 *
-		 * networkActivityIndicatorVisible: bool // ios
-		 * showHideTransition: 'fade', 'slide' // ios
-		 *
-		 */
-	},
+  themeButton: {
+    ...DefaultTheme,
+    dark: true,
+    roundness: 50,
+    mode: "exact",
+    colors: {
+      ...DefaultTheme.colors,
+      primary: "#FFFFFF",
+      accent: "#FFFFFF",
+      background: "#33475B",
+      text: "#FFFFFF",
+      placeholder: "#FFFFFF",
+    },
+    fonts: configureFonts(fontConfig),
+    animation: {
+      scale: 0.5,
+    },
+  },
+  statusBar: {
+    animated: true,
+    backgroundColor: "#3d4da9", // android
+    barStyle: "light-content", // 'default', 'light-content', 'dark-content'
+    hidden: false,
+    translucent: true, // android
+    /**
+     * More options
+     *
+     * networkActivityIndicatorVisible: bool // ios
+     * showHideTransition: 'fade', 'slide' // ios
+     *
+     */
+  },
 };
 
 export default AppTheme;
